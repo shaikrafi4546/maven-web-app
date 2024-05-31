@@ -5,7 +5,7 @@ metadata:
  name: mavenwebappdeployment
 spec:
  replicas: 2
- strategy: 
+ strategy:
  type: RollingUpdate
  selector:
   matchLabels:
@@ -16,21 +16,25 @@ spec:
     labels:
      app: mavenwebapp
    spec:
-   	 containers:
+     containers:
      - name: mavenwebappconatiner
-   	   image: ashokit/mavenwebapp
+       image: ashokit/mavenwebapp
        imagePullPolicy: Always
-   	   ports:
-   	   - containerPort: 8080
+       ports:
+       - containerPort: 8080
 ...
 apiVersion: v1
 kind: Service
 metadata:
  name: mavenwebappsvc
+
 spec:
+
  type: LoadBalancer
  selector:
+
   app: mavenwebapp
+
  ports:
   - port: 80
     targetPort: 8080
